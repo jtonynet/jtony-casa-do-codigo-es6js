@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>Reaprendendo Javascript</title>
+</head>
+
+<body>
+</body>
+<html>
+<script>
+    let alunos = [{
+        nome: 'João',
+        idade: 15
+    }, {
+        nome: 'José',
+        idade: 18
+    }, {
+        nome: 'Maria',
+        idade: 20
+    }];
+
+    let numeros = [1, 2, 3, 4, 5];
+    let pesoDasMalas = [12, 32, 21, 29];
+
+    let dobro = numeros.map((numero) => {
+        return numero * 2;
+    });
+    console.log("dobro: ", dobro);
+
+    let alunosDeMaior = alunos.filter((aluno) => {
+        return aluno.idade >= 18;
+    });
+    console.log("alunosDeMaior: ", alunosDeMaior);
+
+    let alunoJose = alunos.find((aluno) => {
+        return aluno.nome === 'José'
+    });
+    console.log("alunoJose: ", alunoJose);
+
+    let todosAlunosDeMaior = alunos.every((aluno) => {
+        return aluno.idade > 18;
+    });
+    console.log("todosAlunosDeMaior: ", todosAlunosDeMaior);
+
+
+    let temMalaAcimaDoPeso = pesoDasMalas.some((pesoMala) => {
+        return pesoMala > 30;
+    });
+    console.log("temMalaAcimaDoPeso: ", temMalaAcimaDoPeso);
+
+
+    let soma = 0;
+    soma = numeros.reduce((soma, numero) => {
+        return soma + numero
+    });
+    console.log("Soma: ", soma);
+
+    let nomes = alunos.reduce((arrayNomes, aluno) => {
+        arrayNomes.push(aluno.nome);
+        return arrayNomes;
+    }, []);
+    console.log("Nomes: ", nomes);
+</script>
