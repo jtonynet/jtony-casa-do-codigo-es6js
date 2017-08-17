@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>Reaprendendo Javascript</title>
+</head>
+
+<body>
+</body>
+<html>
+<script>
+    let percorreLinha = (() => {
+        function* percorrerLinha477() {
+            console.log('passei pela rua 1');
+            yield 'parada 1';
+
+            console.log('passei pela rua 2');
+            yield 'parada 2';
+
+            console.log('passei pela rua 3');
+            yield 'parada 3';
+
+            console.log('passei pela rua 4');
+            yield 'parada 4';
+
+            console.log('Fim da linha');
+            yield 'Final da linha';
+        }
+
+        const linha = percorrerLinha477();
+        linha.next(); //{value: "parada 1", done: false}
+        linha.next(); //{value: "parada 2", done: false}
+        linha.next(); //{value: "parada 3", done: false}
+        linha.next(); //{value: "parada 4", done: false}
+        linha.next(); //{value: "Fim da linha", done: false}
+        linha.next(); //{value: undefined, done: true}
+
+        const linhaFor = percorrerLinha477();
+        for (let parada of linhaFor) {
+            console.log(`no for-of: ${parada}`);
+        }
+    });
+    //percorreLinha();
+
+    let listaFuncionarios = (() => {
+        const timeDesenvolvimento = {
+            quantidade: 3,
+            maturidade: 'alta',
+            senior: 'Luis',
+            pleno: 'Márcia',
+            junior: 'Christian',
+
+            [Symbol.iterator]: function*() {
+                yield this.senior;
+                yield this.pleno;
+                yield this.junior;
+            }
+        };
+
+        const timeNegocio = {
+            quantidade: 2,
+            diretor: 'Marcelo',
+            vice: 'Guilherme',
+            [Symbol.iterator]: function*() {
+                yield this.diretor;
+                yield this.vice;
+            }
+        };
+
+        const equipe = {
+            timeDesenvolvimento,
+            timeNegocio,
+            [Symbol.iterator]: function*() {
+                yield* timeDesenvolvimento;
+                yield* timeNegocio
+            }
+        }
+
+        for (let funcionario of equipe) {
+            console.log(funcionario);
+        }
+    });
+    listaFuncionarios();
+</script>
